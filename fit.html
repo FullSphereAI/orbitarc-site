@@ -12,7 +12,11 @@
 <meta property="og:title" content="Fit Check | Orbit Arc">
 <meta property="og:image" content="https://orbitarc.co/og-image.jpg">
 <link rel="stylesheet" href="styles.css">
-<script>const BUY_URL = "REPLACE_AT_DEPLOY";</script>
+<script>
+const BUY_URL = "REPLACE_AT_DEPLOY";
+const NEWSLETTER_EMBED = "REPLACE_AT_DEPLOY";
+const NEWSLETTER_NAME = "Flight Rules";
+</script>
 <style>
 .quiz-panel{background:var(--panel);border:1px solid var(--line);border-radius:16px;
   padding:36px 34px;max-width:660px;margin:0 auto}
@@ -382,6 +386,18 @@
       });
 
       if (route === "NOT_YET") {
+        if (NEWSLETTER_EMBED !== "REPLACE_AT_DEPLOY") {
+          var nl = document.createElement("p");
+          nl.style.textAlign = "center";
+          nl.style.marginTop = "26px";
+          nl.appendChild(document.createTextNode("Don't want to remember to come back? "));
+          var nlLink = document.createElement("a");
+          nlLink.href = "index.html#signup";
+          nlLink.textContent = NEWSLETTER_NAME + " is one email a week from the build";
+          nl.appendChild(nlLink);
+          nl.appendChild(document.createTextNode(" — when the time is right, you'll know."));
+          stage.appendChild(nl);
+        }
         var home = document.createElement("p");
         home.style.textAlign = "center";
         var link = document.createElement("a");

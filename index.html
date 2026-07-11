@@ -21,6 +21,11 @@
 <link rel="stylesheet" href="styles.css">
 <!-- BUY_URL: single deploy-time config. Set once, applies to every buy button on the page. -->
 <script>const BUY_URL = "REPLACE_AT_DEPLOY";</script>
+<!-- NEWSLETTER: paste the beehiiv embed URL (https://embeds.beehiiv.com/...) to activate the signup section. NEWSLETTER_NAME renames it everywhere. -->
+<script>
+  const NEWSLETTER_EMBED = "REPLACE_AT_DEPLOY";
+  const NEWSLETTER_NAME = "Flight Rules";
+</script>
 </head>
 <body>
 <div class="wrap">
@@ -130,6 +135,13 @@
   </div>
 </section>
 
+<section id="signup" style="display:none">
+  <div class="kicker">Not Ready to Buy?</div>
+  <h2><span class="nl-name">Flight Rules</span>: the build log.</h2>
+  <p class="lead">NASA keeps a document called Flight Rules — every lesson a mission ever taught them, written down so the next crew doesn't relearn it the hard way. This is mine. One email a week from a real operation run on AI: what worked, what broke, what it cost. Outcomes and numbers, no architecture lectures, no spam. Unsubscribe anytime.</p>
+  <div class="nl-embed" style="max-width:480px;margin:0 auto"></div>
+</section>
+
 <footer>
   <div class="fbrand">Orbit&nbsp;Arc</div>
   <div>AI Operating System for Solo Operators</div>
@@ -148,6 +160,17 @@
   document.querySelectorAll('a.buy').forEach(a => {
     if (BUY_URL !== "REPLACE_AT_DEPLOY") a.href = BUY_URL;
   });
+  if (NEWSLETTER_EMBED !== "REPLACE_AT_DEPLOY") {
+    const s = document.getElementById('signup');
+    s.style.display = "";
+    s.querySelectorAll('.nl-name').forEach(el => el.textContent = NEWSLETTER_NAME);
+    const f = document.createElement('iframe');
+    f.src = NEWSLETTER_EMBED;
+    f.title = NEWSLETTER_NAME + " signup";
+    f.style.cssText = "width:100%;height:52px;border:none;background:transparent";
+    f.setAttribute('data-test-id','beehiiv-embed');
+    s.querySelector('.nl-embed').appendChild(f);
+  }
 </script>
 </body>
 </html>
