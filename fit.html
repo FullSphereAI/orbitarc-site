@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Fit Check | Orbit Arc</title>
+<meta name="description" content="A 5 question fit check for Orbit Arc. Honest routing: build it yourself, build it together, or not yet.">
+<link rel="canonical" href="https://orbitarc.co/fit.html">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Fit Check | Orbit Arc">
+<meta property="og:image" content="https://orbitarc.co/og-image.jpg">
+<link rel="stylesheet" href="styles.css">
+<script>const BUY_URL = "REPLACE_AT_DEPLOY";</script>
+<style>
+.quiz-panel{background:var(--panel);border:1px solid var(--line);border-radius:16px;
+  padding:36px 34px;max-width:660px;margin:0 auto}
+.dots{display:flex;gap:9px;justify-content:center;margin-bottom:28px}
+.dots span{width:8px;height:8px;border-radius:50%;background:var(--line);transition:background .2s ease}
+.dots span.done{background:var(--blue)}
+.dots span.on{background:var(--cyan);box-shadow:0 0 8px rgba(62,230,255,.6)}
+.q-title{color:var(--white);font-size:22px;font-weight:700;line-height:1.35;
+  margin-bottom:22px;text-align:center}
+.q-opts{display:flex;flex-direction:column;gap:12px}
+.q-opt{font:inherit;text-align:left;background:var(--panel2);border:1px solid var(--line);
+  border-radius:12px;padding:14px 18px;color:var(--text);cursor:pointer;font-size:16px;
+  transition:border-color .15s ease,color .15s ease}
+.q-opt:hover,.q-opt:focus-visible{border-color:var(--cyan);color:var(--white);outline:none}
+.q-back{background:none;border:none;font:inherit;color:var(--dim);font-size:14px;
+  cursor:pointer;margin-top:22px;padding:4px 8px;letter-spacing:.04em}
+.q-back:hover,.q-back:focus-visible{color:var(--cyan);outline:none}
+.stage{transition:opacity .18s ease,transform .18s ease}
+.stage.out{opacity:0;transform:translateY(8px)}
+.result-head{text-align:center;margin-bottom:14px}
+.result-head h2{font-size:30px;color:var(--white);font-weight:750;margin-bottom:12px}
+.result-body{font-size:16px;color:var(--text);max-width:560px;margin:0 auto 26px;text-align:center}
+.term{background:#04060b;border:1px solid rgba(62,230,255,.35);border-radius:12px;
+  padding:22px 24px;box-shadow:0 0 30px rgba(62,230,255,.12),inset 0 0 40px rgba(62,230,255,.03);
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:14px;line-height:1.75;
+  color:var(--ice);min-height:360px;overflow-x:auto}
+.term pre{white-space:pre-wrap;word-break:break-word;font:inherit;margin:0}
+.cursor{display:inline-block;width:8px;height:15px;vertical-align:-2px;background:var(--cyan);
+  animation:blink 1s steps(1) infinite}
+@keyframes blink{0%,49%{opacity:1}50%,100%{opacity:0}}
+.skip-row{text-align:right;margin-top:10px}
+.skip-row button{background:none;border:none;font:inherit;color:var(--dim);font-size:13px;
+  cursor:pointer;letter-spacing:.06em;padding:4px 6px}
+.skip-row button:hover,.skip-row button:focus-visible{color:var(--cyan);outline:none}
+.after-boot{text-align:center;margin-top:30px;opacity:0;transition:opacity .35s ease}
+.after-boot.show{opacity:1}
+.after-boot .tagline{color:var(--dim);font-size:15px;margin-bottom:22px;letter-spacing:.02em}
+.retake{display:block;margin-top:26px;font-size:13px;color:var(--dim);text-decoration:none;letter-spacing:.04em}
+.retake:hover{color:var(--cyan)}
+.quiet-link{color:var(--cyan);text-decoration:none;font-size:15px}
+.quiet-link:hover{color:var(--white)}
+@media (max-width:640px){
+  .quiz-panel{padding:28px 20px}
+  .q-title{font-size:19px}
+  .term{font-size:12.5px;padding:16px;min-height:320px}
+  .result-head h2{font-size:24px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<nav class="top">
+  <a class="mark" href="index.html"><img src="logo.jpg" alt="Orbit Arc"><span>ORBIT&nbsp;ARC</span></a>
+  <div class="links">
+    <a href="index.html#inside">What's Inside</a>
+    <a href="faq.html">FAQ</a>
+    <a href="fit.html">Fit Check</a>
+    <a href="index.html#get" class="btn ghost" style="padding:9px 20px">Get Orbit Arc</a>
+  </div>
+</nav>
+
+<header class="hero" style="padding:48px 0 36px">
+  <div class="kicker">Fit Check</div>
+  <h1 style="font-size:42px">Is Orbit Arc for you?</h1>
+  <p class="sub" style="margin-bottom:0">5 questions. About 60 seconds. You get an honest answer at the end, even if that answer is not yet.</p>
+</header>
+
+<div class="hrule"></div>
+
+<section style="padding-top:40px">
+  <div class="quiz-panel">
+    <div class="dots" id="dots" aria-hidden="true"></div>
+    <div class="stage" id="stage" aria-live="polite"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="fbrand">Orbit&nbsp;Arc</div>
+  <div class="social">
+    <a href="https://x.com/FullSphereAI">X</a>
+    <a href="https://www.youtube.com/@Orbit-Arc">YouTube</a>
+    <a href="https://www.tiktok.com/@full_sphere">TikTok</a>
+    <a href="https://www.instagram.com/full_sphere">Instagram</a>
+  </div>
+  <div>&copy; 2026 Full Sphere Studios LLC</div>
+  <div style="margin-top:6px">_Sphere</div>
+</footer>
+
+</div>
+<script>
+(function(){
+  "use strict";
+
+  var QUESTIONS = [
+    { q: "What best describes you?",
+      label: "Who",
+      opts: ["Solo operator or business owner running everything",
+             "Building something on the side",
+             "Local business with a team",
+             "Curious, nothing running yet"] },
+    { q: "How many hours a week do you lose to re-explaining, planning, drafting, and admin?",
+      label: "Hours lost weekly",
+      opts: ["0 to 2", "3 to 5", "6 to 10", "More than 10"] },
+    { q: "How do you feel about setting up software yourself?",
+      label: "Setup preference",
+      opts: ["I follow docs happily",
+             "I can, but I would rather not",
+             "Someone should do it for me"] },
+    { q: "Have you used Claude or another AI assistant before?",
+      label: "AI experience",
+      opts: ["Daily", "Sometimes", "Never"] },
+    { q: "Where are you?",
+      label: "Location",
+      opts: ["Houston area", "Somewhere else"] }
+  ];
+
+  var HOURS = ["0 to 2", "3 to 5", "6 to 10", "more than 10"];
+
+  // Boot action templates, one set per Q1 answer. {h} is the Q2 hours phrase.
+  var TEMPLATES = [
+    { items: [
+        "Follow up with the 2 clients who went quiet after your last send",
+        "Batch invoicing, inbox triage, and scheduling into 1 block. The {h} hours you lose each week live there",
+        "Prep tomorrow's call: agenda, numbers, and the 1 decision you need from it"],
+      deck: [
+        "Weekly numbers review, 20 minutes",
+        "Draft the client update email"] },
+    { items: [
+        "Ship the landing page copy in the 45 minutes before work",
+        "Queue 3 posts for the week. Planning on the fly is where the {h} hours you lose each week go",
+        "Reply to the 4 comments from last night before they go stale"],
+      deck: [
+        "Outline Saturday's build block",
+        "Update the project changelog"] },
+    { items: [
+        "Send the 3 quotes sitting in the inbox since Friday",
+        "Chase the 5 open customer follow ups. That is most of the {h} hours you lose each week",
+        "Post the schedule change before the morning shift asks"],
+      deck: [
+        "Review last week's job costs",
+        "Draft the hiring post for the counter role"] },
+    { items: [
+        "Pull the ideas from your notes app into 1 working list",
+        "Track where the {h} hours you lose each week actually go for 3 days",
+        "Write down the first task you would hand off if you could"],
+      deck: [
+        "List the tools you already pay for",
+        "Pick 1 idea and define what done looks like"] }
+  ];
+
+  var RESULTS = {
+    SELF_SERVE: {
+      headline: "You can build this yourself.",
+      body: "You follow docs and you have real work leaking hours. The included Quick Start takes you from download to a live operator in about 60 minutes. Here is what booting it feels like."
+    },
+    REMOTE_SETUP: {
+      headline: "Build it together, remote.",
+      body: "You have the problem Orbit Arc solves, and you would rather not build it alone. We get on a screen share, build your system together, and you walk away knowing how to run it. First, here is what booting it feels like."
+    },
+    ON_SITE: {
+      headline: "I come to you.",
+      body: "You are in the Houston area and this works best in person. I install the full system on your hardware and leave you with a working operator plus the documentation to run it. First, here is what booting it feels like."
+    },
+    NOT_YET: {
+      headline: "Honest answer: not yet.",
+      body: "You are curious, you are not losing real hours yet, and you have not used an AI assistant before. Buying an operating system for a tool you have never driven is the wrong order. Start with plain Claude. Use it daily for 2 weeks. When re-explaining yourself starts to cost you hours, come back. The quiz will be here."
+    }
+  };
+
+  var stage = document.getElementById("stage");
+  var dots = document.getElementById("dots");
+  var answers = [];
+  var step = 0;
+  var started = false;
+  var bootTimer = null;
+  var reduceMotion = false;
+  try {
+    reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  } catch (e) { reduceMotion = false; }
+
+  function computeRoute() {
+    if (answers[0] === 3 && answers[1] === 0 && answers[3] === 2) return "NOT_YET";
+    if (answers[2] === 0) return "SELF_SERVE";
+    if (answers[4] === 0 && (answers[2] === 2 || answers[0] === 2)) return "ON_SITE";
+    return "REMOTE_SETUP";
+  }
+
+  function renderDots() {
+    var html = "";
+    for (var i = 0; i < QUESTIONS.length; i++) {
+      var cls = i < step ? "done" : (i === step && step < QUESTIONS.length ? "on" : "");
+      html += '<span class="' + cls + '"></span>';
+    }
+    dots.innerHTML = html;
+  }
+
+  function transition(build) {
+    if (!started || reduceMotion) { build(); return; }
+    stage.classList.add("out");
+    window.setTimeout(function () {
+      build();
+      stage.classList.remove("out");
+    }, 180);
+  }
+
+  function renderQuestion() {
+    renderDots();
+    transition(function () {
+      var q = QUESTIONS[step];
+      stage.innerHTML = "";
+
+      var title = document.createElement("h2");
+      title.className = "q-title";
+      title.textContent = q.q;
+      stage.appendChild(title);
+
+      var box = document.createElement("div");
+      box.className = "q-opts";
+      q.opts.forEach(function (label, idx) {
+        var b = document.createElement("button");
+        b.type = "button";
+        b.className = "q-opt";
+        b.textContent = label;
+        b.addEventListener("click", function () {
+          answers[step] = idx;
+          step++;
+          if (step >= QUESTIONS.length) { renderResult(); } else { renderQuestion(); }
+        });
+        box.appendChild(b);
+      });
+      stage.appendChild(box);
+
+      if (step > 0) {
+        var back = document.createElement("button");
+        back.type = "button";
+        back.className = "q-back";
+        back.textContent = "Back";
+        back.addEventListener("click", function () {
+          step--;
+          renderQuestion();
+        });
+        stage.appendChild(back);
+      }
+
+      if (started) {
+        var first = box.querySelector("button");
+        if (first) { try { first.focus({ preventScroll: true }); } catch (e) { first.focus(); } }
+      }
+      started = true;
+    });
+  }
+
+  function fill(tpl) {
+    return tpl.replace("{h}", HOURS[answers[1]]);
+  }
+
+  function buildTranscript() {
+    var t = TEMPLATES[answers[0]];
+    var lines = [
+      "VEGA ONLINE",
+      "reading MEMORY.md ............ ok",
+      "reading CONTEXT.md ........... ok",
+      "anchoring date ............... " + new Date().toDateString(),
+      "loading skills ............... 31 active",
+      "",
+      "Vega loaded. Here's your day:",
+      "",
+      "1. " + fill(t.items[0]),
+      "2. " + fill(t.items[1]),
+      "3. " + fill(t.items[2]),
+      "",
+      "On deck:",
+      "- " + t.deck[0],
+      "- " + t.deck[1]
+    ];
+    return lines.join("\n");
+  }
+
+  function buildMailto(route) {
+    var lines = ["Fit check answers:", ""];
+    QUESTIONS.forEach(function (q, i) {
+      lines.push(q.label + ": " + q.opts[answers[i]]);
+    });
+    lines.push("");
+    lines.push("Route: " + (route === "ON_SITE" ? "on site setup" : "remote setup"));
+    return "mailto:uplink@orbitarc.co?subject=Setup%20help&body=" +
+      encodeURIComponent(lines.join("\n"));
+  }
+
+  function typeInto(pre, text, onDone) {
+    var i = 0;
+    var cursor = document.createElement("span");
+    cursor.className = "cursor";
+    var node = document.createTextNode("");
+    pre.appendChild(node);
+    pre.appendChild(cursor);
+
+    function finish() {
+      if (bootTimer) { window.clearTimeout(bootTimer); bootTimer = null; }
+      node.nodeValue = text;
+      onDone();
+    }
+
+    if (reduceMotion) { finish(); return finish; }
+
+    function tick() {
+      if (i >= text.length) { bootTimer = null; onDone(); return; }
+      var ch = text.charAt(i);
+      node.nodeValue += ch;
+      i++;
+      var delay;
+      if (ch === "\n") {
+        delay = 240 + Math.random() * 320;
+        if (text.charAt(i) === "\n") delay = 420;
+      } else if (ch === ".") {
+        delay = 7;
+      } else {
+        delay = 12 + Math.random() * 26;
+      }
+      bootTimer = window.setTimeout(tick, delay);
+    }
+    bootTimer = window.setTimeout(tick, 400);
+    return finish;
+  }
+
+  function renderResult() {
+    renderDots();
+    var route = computeRoute();
+    var r = RESULTS[route];
+
+    transition(function () {
+      stage.innerHTML = "";
+
+      var head = document.createElement("div");
+      head.className = "result-head";
+      var kick = document.createElement("div");
+      kick.className = "kicker";
+      kick.style.fontSize = "11px";
+      kick.style.letterSpacing = ".4em";
+      kick.style.textTransform = "uppercase";
+      kick.style.color = "var(--cyan)";
+      kick.style.fontWeight = "600";
+      kick.style.marginBottom = "12px";
+      kick.textContent = "Your Result";
+      var h2 = document.createElement("h2");
+      h2.textContent = r.headline;
+      head.appendChild(kick);
+      head.appendChild(h2);
+      stage.appendChild(head);
+
+      var body = document.createElement("p");
+      body.className = "result-body";
+      body.textContent = r.body;
+      stage.appendChild(body);
+
+      var retake = document.createElement("a");
+      retake.className = "retake";
+      retake.href = "#";
+      retake.textContent = "Retake the quiz";
+      retake.addEventListener("click", function (e) {
+        e.preventDefault();
+        if (bootTimer) { window.clearTimeout(bootTimer); bootTimer = null; }
+        answers = [];
+        step = 0;
+        renderQuestion();
+      });
+
+      if (route === "NOT_YET") {
+        var home = document.createElement("p");
+        home.style.textAlign = "center";
+        var link = document.createElement("a");
+        link.className = "quiet-link";
+        link.href = "index.html";
+        link.textContent = "Back to the homepage";
+        home.appendChild(link);
+        stage.appendChild(home);
+        retake.style.textAlign = "center";
+        stage.appendChild(retake);
+        return;
+      }
+
+      var term = document.createElement("div");
+      term.className = "term";
+      var pre = document.createElement("pre");
+      term.appendChild(pre);
+      stage.appendChild(term);
+
+      var skipRow = document.createElement("div");
+      skipRow.className = "skip-row";
+      var skipBtn = document.createElement("button");
+      skipBtn.type = "button";
+      skipBtn.textContent = "skip";
+      skipRow.appendChild(skipBtn);
+      stage.appendChild(skipRow);
+
+      var after = document.createElement("div");
+      after.className = "after-boot";
+      var tag = document.createElement("p");
+      tag.className = "tagline";
+      tag.textContent = "This is the first 10 seconds of every day with an operator.";
+      after.appendChild(tag);
+
+      var cta;
+      if (route === "SELF_SERVE") {
+        cta = document.createElement("a");
+        cta.className = "btn buy";
+        cta.href = (BUY_URL !== "REPLACE_AT_DEPLOY") ? BUY_URL : "index.html#get";
+        cta.textContent = "Get Orbit Arc, $197";
+      } else {
+        cta = document.createElement("a");
+        cta.className = "btn";
+        cta.href = buildMailto(route);
+        cta.textContent = "Start the conversation";
+      }
+      after.appendChild(cta);
+
+      retake.style.textAlign = "center";
+      after.appendChild(retake);
+      stage.appendChild(after);
+
+      var finished = false;
+      function showCta() {
+        if (finished) return;
+        finished = true;
+        skipRow.style.visibility = "hidden";
+        after.classList.add("show");
+      }
+
+      var forceFinish = typeInto(pre, buildTranscript(), showCta);
+      skipBtn.addEventListener("click", forceFinish);
+    });
+  }
+
+  renderQuestion();
+})();
+</script>
+<script>
+  document.querySelectorAll('a.buy').forEach(a => {
+    if (BUY_URL !== "REPLACE_AT_DEPLOY") a.href = BUY_URL;
+  });
+</script>
+</body>
+</html>
