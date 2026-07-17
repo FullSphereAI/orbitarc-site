@@ -46,7 +46,7 @@
   <h1>Your AI forgets you<br>every single morning.</h1>
   <p class="sub">Orbit Arc turns Claude into a standing operator for your business. Persistent memory, 31 working skills, and a boot sequence that never starts a session asking who you are.</p>
   <div class="cta-row">
-    <a class="btn buy" href="#get">Get Orbit Arc for $197</a>
+    <a class="btn" href="#get">Get Orbit Arc for $197</a>
     <a class="btn ghost" href="#how">How it works</a>
   </div>
   <div class="under">Runs on Claude Pro + the Claude desktop app. Any device. No new hardware.</div>
@@ -114,8 +114,12 @@
     <div class="card"><h3>Set up with you: remote</h3><p>You, me, a screen share, and your machine. We build your system together and you walk away knowing how to run it. Any device, anywhere.</p></div>
     <div class="card"><h3>Set up for you: on-site, local</h3><p>For businesses and buyers in my area: I come to you, install the full system on your hardware, and leave you with a working operator and the documentation to run it.</p></div>
   </div>
-  <p class="lead" style="margin-top:30px;margin-bottom:22px">No pitch, no pressure. Tell me what you're trying to get done and I'll tell you honestly whether this fits.</p>
-  <a class="btn ghost" href="mailto:uplink@orbitarc.co?subject=Setup%20help">Start the conversation</a>
+  <p class="lead" style="margin-top:30px;margin-bottom:22px">No pitch, no pressure. Tell me what you're trying to get done. I'll tell you honestly whether this fits, and no is a real answer.</p>
+  <div class="kicker" style="margin-bottom:14px">Open an Uplink</div>
+  <div>
+    <a href="mailto:uplink@orbitarc.co?subject=Setup%20help" style="color:var(--cyan);font-size:19px;font-weight:600;text-decoration:none">uplink@orbitarc.co</a>
+    <button id="copy-uplink" type="button" style="margin-left:12px;background:transparent;border:1px solid var(--line);color:var(--ice);border-radius:999px;padding:7px 18px;font-size:13px;cursor:pointer;vertical-align:2px">Copy</button>
+  </div>
 </section>
 
 <section id="get">
@@ -131,7 +135,7 @@
       <li>The advanced automation layer specs</li>
       <li><strong>Private 30-minute working session</strong>, first 20 buyers only. I contact you directly to schedule.</li>
     </ul>
-    <a class="btn buy" href="#">Get Orbit Arc</a>
+    <a class="btn buy" href="https://store.orbitarc.co/l/orbit-arc">Get Orbit Arc</a>
     <p style="margin-top:18px;font-size:13px;color:var(--dim)">Requires a Claude Pro subscription or higher. Works on Mac and Windows.</p>
   </div>
 </section>
@@ -154,13 +158,21 @@
   </div>
   <div><a href="privacy.html" style="color:var(--dim)">Privacy</a> &nbsp;·&nbsp; <a href="terms.html" style="color:var(--dim)">Terms</a></div>
   <div>&copy; 2026 Full Sphere Studios LLC</div>
-  <div style="margin-top:6px">_Sphere</div>
+  <div style="margin-top:10px;color:var(--cyan);font-weight:600;font-size:14px">APEX Hard</div>
+  <div style="font-family:ui-monospace,monospace;color:var(--dim);font-size:13px">_Sphere</div>
 </footer>
 
 </div>
 <script>
   document.querySelectorAll('a.buy').forEach(a => {
     if (BUY_URL !== "REPLACE_AT_DEPLOY") a.href = BUY_URL;
+  });
+  const cu = document.getElementById('copy-uplink');
+  if (cu) cu.addEventListener('click', () => {
+    navigator.clipboard.writeText('uplink@orbitarc.co').then(() => {
+      cu.textContent = 'Copied';
+      setTimeout(() => { cu.textContent = 'Copy'; }, 1600);
+    });
   });
   if (NEWSLETTER_EMBED !== "REPLACE_AT_DEPLOY") {
     const s = document.getElementById('signup');
