@@ -3,131 +3,50 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Orbit Arc</title>
-<meta name="description" content="Orbit Arc is evolving.">
+<title>Orbit Arc™ | Full Sphere AI</title>
+<meta name="description" content="Orbit Arc is the assistant system in development at Full Sphere AI.">
 <link rel="canonical" href="https://orbitarc.co/">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="64x64" href="full-sphere-mark.png">
+<link rel="apple-touch-icon" href="full-sphere-touch.png">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://orbitarc.co/">
-<meta property="og:title" content="Orbit Arc">
-<meta property="og:description" content="Orbit Arc is evolving.">
-<meta property="og:image" content="https://orbitarc.co/og-image.jpg">
+<meta property="og:title" content="Orbit Arc™ | Full Sphere AI">
+<meta property="og:description" content="Orbit Arc is the assistant system in development at Full Sphere AI.">
+<meta property="og:image" content="https://orbitarc.co/full-sphere-social.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:site" content="@FullSphereAI">
-<meta name="twitter:title" content="Orbit Arc">
-<meta name="twitter:description" content="Orbit Arc is evolving.">
-<meta name="twitter:image" content="https://orbitarc.co/og-image.jpg">
 <link rel="stylesheet" href="styles.css">
-<style>
-/* Self-contained base, so this file previews correctly opened directly too, not just once it's
-   sitting next to the real styles.css in the repo. Same values as styles.css, safe to duplicate. */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
-:root{
-  --bg:#080b12; --panel:rgba(17,23,36,.72);
-  --line:rgba(255,255,255,.12); --line-strong:rgba(255,255,255,.22);
-  --cyan:#6de8ff; --blue:#4f7cff; --violet:#9f8cff; --lime:#c8ff5a; --ice:#bfe9ff;
-  --text:#dbe3f0; --dim:#9ca8ba; --white:#f5f7fb;
-}
-*{box-sizing:border-box;margin:0;padding:0}
-body{
-  background:var(--bg); color:var(--text);
-  font-family:Inter,ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;
-  font-size:17px; line-height:1.65;
-  background-image:
-    radial-gradient(1200px 600px at 80% -10%, rgba(79,124,255,.10), transparent 60%),
-    radial-gradient(900px 500px at -10% 20%, rgba(109,232,255,.07), transparent 60%),
-    radial-gradient(700px 700px at 50% 110%, rgba(159,140,255,.08), transparent 60%);
-  background-attachment:fixed;
-}
-.wrap{max-width:1020px;margin:0 auto;padding:0 32px}
-nav.top{display:flex;align-items:center;justify-content:space-between;padding:22px 0}
-nav.top .mark{display:flex;align-items:center;gap:12px;text-decoration:none}
-nav.top .mark img{width:38px;height:38px;border-radius:50%;box-shadow:0 0 18px rgba(109,232,255,.35)}
-footer{margin-top:40px;padding:36px 0 46px;border-top:1px solid var(--line);text-align:center;color:var(--dim);font-size:13px}
-@media (max-width:820px){ .wrap{padding:0 20px} }
-
-/* Holding-page mode. styles.css is untouched, this just overrides/extends it for this page only. */
-nav.top .links span{
-  color:var(--dim); opacity:.4; letter-spacing:.06em; font-size:14px; margin-left:26px;
-}
-nav.top .links span.btn-mute{
-  border:1px solid var(--line); border-radius:999px; padding:9px 20px;
-}
-.hold{
-  min-height:76vh; display:flex; flex-direction:column;
-  align-items:center; justify-content:center; text-align:center;
-}
-.hold .logo{
-  width:220px; height:220px; border-radius:50%;
-  box-shadow:0 0 70px rgba(109,232,255,.28),0 0 160px rgba(79,124,255,.16);
-  animation:pulse 4.5s ease-in-out infinite;
-}
-@keyframes pulse{
-  0%,100%{box-shadow:0 0 70px rgba(109,232,255,.28),0 0 160px rgba(79,124,255,.16)}
-  50%{box-shadow:0 0 95px rgba(109,232,255,.42),0 0 200px rgba(159,140,255,.22)}
-}
-.ticker-wrap{
-  margin-top:52px; width:100%; overflow:hidden;
-  border-top:1px solid var(--line); border-bottom:1px solid var(--line);
-  padding:16px 0; background:var(--panel);
-  backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
-}
-.ticker-track{
-  display:flex; width:max-content;
-  animation:scroll 28s linear infinite;
-}
-.ticker-track span{
-  display:inline-block; padding:0 28px; white-space:nowrap;
-  font-family:ui-monospace,monospace; font-size:13px; letter-spacing:.18em;
-  text-transform:uppercase; color:var(--cyan);
-}
-.ticker-track span.dim{ color:var(--dim); }
-@keyframes scroll{
-  0%{transform:translateX(0)}
-  100%{transform:translateX(-50%)}
-}
-@media (max-width:820px){
-  .hold .logo{width:150px;height:150px}
-}
-</style>
 </head>
 <body>
 <div class="wrap">
-
-<nav class="top">
-  <a class="mark" href="index.html"><img src="logo.jpg" alt="Orbit Arc"><span style="opacity:1;color:var(--white);font-weight:700;letter-spacing:.28em;font-size:14px;margin-left:0">ORBIT&nbsp;ARC</span></a>
+<nav class="top" aria-label="Main">
+  <a class="mark" href="index.html"><img src="full-sphere-mark.png" alt="" width="40" height="40"><span>FULL SPHERE AI</span></a>
   <div class="links">
-    <span>What's Inside</span>
-    <span>FAQ</span>
-    <span>Fit Check</span>
-    <span class="btn-mute">Get Orbit Arc</span>
+    <a href="faq.html">FAQ</a>
+    <a href="fit.html">Fit Check</a>
   </div>
 </nav>
 
-<div class="hold">
-  <img class="logo" src="logo.jpg" alt="Orbit Arc logo, glowing energy sphere with orbital ring">
-</div>
+<main>
+  <header class="hero home-hero">
+    <div class="hero-copy">
+      <p class="kicker">In development at Full Sphere AI</p>
+      <h1>Orbit Arc<span class="trademark">™</span></h1>
+      <p class="sub">Orbit Arc is the system that gives Vega, the Full Sphere AI assistant, memory and reusable workflows. Follow how the system is built and tested.</p>
+      <div class="cta-row">
+        <a class="btn" href="https://orbitarc.beehiiv.com/subscribe">Get Flight Rules</a>
+        <a class="btn ghost" href="https://www.youtube.com/@fullsphereAi">Watch on YouTube</a>
+      </div>
+      <p class="under">The Full Sphere AI store at fullsphere.ai is private during setup.</p>
+    </div>
+    <img class="hero-art" src="full-sphere-sphere.png" alt="" width="512" height="512">
+  </header>
+</main>
 
-<div class="ticker-wrap">
-  <div class="ticker-track">
-    <span>ORBIT ARC IS EVOLVING</span><span class="dim">//</span>
-    <span>FULL SPHERE RECALIBRATING</span><span class="dim">//</span>
-    <span>SIGNAL PAUSED, NOT LOST</span><span class="dim">//</span>
-    <span>NEW ARCHITECTURE INCOMING</span><span class="dim">//</span>
-    <span>STAND BY</span><span class="dim">//</span>
-    <span>ORBIT ARC IS EVOLVING</span><span class="dim">//</span>
-    <span>FULL SPHERE RECALIBRATING</span><span class="dim">//</span>
-    <span>SIGNAL PAUSED, NOT LOST</span><span class="dim">//</span>
-    <span>NEW ARCHITECTURE INCOMING</span><span class="dim">//</span>
-    <span>STAND BY</span><span class="dim">//</span>
-  </div>
-</div>
-
-<footer style="margin-top:40px">
+<footer>
+  <div class="fbrand">Guide Forward | Apex Hard</div>
+  <div class="social"><a href="privacy.html">Privacy</a><a href="terms.html">Past download terms</a></div>
   <div>&copy; 2026 Full Sphere Studios LLC</div>
 </footer>
-
 </div>
 </body>
 </html>
